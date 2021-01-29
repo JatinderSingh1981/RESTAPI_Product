@@ -18,9 +18,13 @@ namespace Entities.REST_API
         public string PropertyName { get; set; }
         [Required]
         public string PropertyValue { get; set; }
+        [NotMapped]
+        public PropertyType PropertyType { get; set; }
         [Required]
-        public int PropertyType { get; set; }
-        public int LookUpSource { get; set; }
+        public int PropertyTypeId { get; set; }
+        [NotMapped]
+        public LookupSource LookUpSource { get; set; }
+        public int? LookUpSourceId { get; set; }
         [Timestamp]
         public byte[] Timestamp { get; set; }
         

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DBContext.REST_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210128124837_InitializeDB")]
-    partial class InitializeDB
+    [Migration("20210129112930_Initialize-Context")]
+    partial class InitializeContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -220,7 +220,7 @@ namespace DBContext.REST_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("LookUpSource")
+                    b.Property<int?>("LookUpSourceId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ProductMasterId")
@@ -230,7 +230,7 @@ namespace DBContext.REST_API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PropertyType")
+                    b.Property<int>("PropertyTypeId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("PropertyValue")
@@ -252,19 +252,18 @@ namespace DBContext.REST_API.Migrations
                         new
                         {
                             Id = 1,
-                            LookUpSource = 2,
+                            LookUpSourceId = 2,
                             ProductMasterId = 1,
                             PropertyName = "FormFactor",
-                            PropertyType = 4,
+                            PropertyTypeId = 4,
                             PropertyValue = "1"
                         },
                         new
                         {
                             Id = 2,
-                            LookUpSource = 0,
                             ProductMasterId = 2,
                             PropertyName = "Size",
-                            PropertyType = 1,
+                            PropertyTypeId = 1,
                             PropertyValue = "15"
                         });
                 });

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DBContext.REST_API.Migrations
 {
-    public partial class InitializeDB : Migration
+    public partial class InitializeContext : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -114,8 +114,8 @@ namespace DBContext.REST_API.Migrations
                     ProductMasterId = table.Column<int>(type: "INTEGER", nullable: false),
                     PropertyName = table.Column<string>(type: "TEXT", nullable: false),
                     PropertyValue = table.Column<string>(type: "TEXT", nullable: false),
-                    PropertyType = table.Column<int>(type: "INTEGER", nullable: false),
-                    LookUpSource = table.Column<int>(type: "INTEGER", nullable: false),
+                    PropertyTypeId = table.Column<int>(type: "INTEGER", nullable: false),
+                    LookUpSourceId = table.Column<int>(type: "INTEGER", nullable: true),
                     Timestamp = table.Column<byte[]>(type: "BLOB", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
@@ -241,13 +241,13 @@ namespace DBContext.REST_API.Migrations
 
             migrationBuilder.InsertData(
                 table: "ProductDetails",
-                columns: new[] { "Id", "LookUpSource", "ProductMasterId", "PropertyName", "PropertyType", "PropertyValue" },
+                columns: new[] { "Id", "LookUpSourceId", "ProductMasterId", "PropertyName", "PropertyTypeId", "PropertyValue" },
                 values: new object[] { 1, 2, 1, "FormFactor", 4, "1" });
 
             migrationBuilder.InsertData(
                 table: "ProductDetails",
-                columns: new[] { "Id", "LookUpSource", "ProductMasterId", "PropertyName", "PropertyType", "PropertyValue" },
-                values: new object[] { 2, 0, 2, "Size", 1, "15" });
+                columns: new[] { "Id", "LookUpSourceId", "ProductMasterId", "PropertyName", "PropertyTypeId", "PropertyValue" },
+                values: new object[] { 2, null, 2, "Size", 1, "15" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductDetails_ProductMasterId",

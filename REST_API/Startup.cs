@@ -55,7 +55,9 @@ namespace REST_API
             services.AddTransient<ProductsResponse>();
             services.AddTransient<ProductResponse>();
 
-            services.AddTransient<IProductBusiness, ProductBusiness>(); //This is parent class
+            services.AddTransient<IEnumBusiness, EnumBusiness>();
+
+            services.AddTransient<IProductBusiness, ProductBusiness>();
             services.AddTransient<IProductRepository, ProductRepository>();
             #endregion
 
@@ -90,7 +92,7 @@ namespace REST_API
 
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Rhipe API");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "REST API");
                 });
                 #endregion
             }
@@ -99,7 +101,7 @@ namespace REST_API
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

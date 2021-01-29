@@ -14,8 +14,8 @@ namespace REST_API.Controllers
     /// If I have to fetch the values from DB, I will convert these to async Task methods.
     /// </summary>
     [ApiController]
-    [Produces("application/json")]
-    [Route("api/v1/{controller}")]
+    //[Produces("application/json")]
+    [Route("api/v1/Enum")]
     public class EnumController : ControllerBase
     {
         private readonly ILogger<EnumController> _logger;
@@ -28,29 +28,41 @@ namespace REST_API.Controllers
             _logger = logger;
         }
 
-        [HttpGet()]
-        public IEnumerable<T> GetProductTypeList<T>() where T : Enumeration
+        [HttpGet("formfactor")]
+        public IEnumerable<FormFactor> GetFormFactorList()
         {
-            return _enumBL.GetList<T>();
+            return _enumBL.GetList<FormFactor>();
         }
 
-        //[HttpGet("processor")]
-        //public IEnumerable<ProcessorType> GetProcessorTypeList()
-        //{
-        //    return _enumBL.GetList<ProcessorType>();
-        //}
+        [HttpGet("processortype")]
+        public IEnumerable<ProcessorType> GetProcessorTypeList()
+        {
+            return _enumBL.GetList<ProcessorType>();
+        }
 
-        //[HttpGet("brand")]
-        //public IEnumerable<Brand> GetGenderList()
-        //{
-        //    return _enumBL.GetList<Brand>();
-        //}
+        [HttpGet("producttype")]
+        public IEnumerable<ProductType> GetProductTypeList()
+        {
+            return _enumBL.GetList<ProductType>();
+        }
 
-        //[HttpGet("formFactor")]
-        //public IEnumerable<FormFactor> GetGroupList()
-        //{
-        //    return _enumBL.GetList<FormFactor>();
-        //}
+        [HttpGet("propertytype")]
+        public IEnumerable<PropertyType> GetPropertyTypeList()
+        {
+            return _enumBL.GetList<PropertyType>();
+        }
+
+        [HttpGet("brand")]
+        public IEnumerable<Brand> GetBrandList()
+        {
+            return _enumBL.GetList<Brand>();
+        }
+
+        [HttpGet("lookupsource")]
+        public IEnumerable<LookupSource> GetLookUpSourceList()
+        {
+            return _enumBL.GetList<LookupSource>();
+        }
 
     }
 }

@@ -218,7 +218,7 @@ namespace DBContext.REST_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("LookUpSource")
+                    b.Property<int?>("LookUpSourceId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ProductMasterId")
@@ -228,7 +228,7 @@ namespace DBContext.REST_API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PropertyType")
+                    b.Property<int>("PropertyTypeId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("PropertyValue")
@@ -250,19 +250,18 @@ namespace DBContext.REST_API.Migrations
                         new
                         {
                             Id = 1,
-                            LookUpSource = 2,
+                            LookUpSourceId = 2,
                             ProductMasterId = 1,
                             PropertyName = "FormFactor",
-                            PropertyType = 4,
+                            PropertyTypeId = 4,
                             PropertyValue = "1"
                         },
                         new
                         {
                             Id = 2,
-                            LookUpSource = 0,
                             ProductMasterId = 2,
                             PropertyName = "Size",
-                            PropertyType = 1,
+                            PropertyTypeId = 1,
                             PropertyValue = "15"
                         });
                 });
