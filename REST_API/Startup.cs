@@ -7,7 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Business.REST_API;
 using Common.REST_API;
-using Infrastructure.REST_API;
 using ViewModels.REST_API;
 using REST_API.Mapper;
 using DBContext.REST_API;
@@ -16,13 +15,8 @@ using Repository.REST_API;
 
 namespace REST_API
 {
-    //Add Entity Framework Core code to get data from the database instead of the 3rd party API
     //Add Serilog, versioning, health check, 
-
-    //If this were the real application, I would use No SQL DB to save the products in the database,
-    //That way I don't need to create multiple tables to store the values. 
-    //I could simply create 1 document, seperated by partition key
-    //I would use SQL server for transaction data and Cosmos DB for storing the inventory records
+    
     public class Startup
     {
         private readonly string localApis = "_localApis";
