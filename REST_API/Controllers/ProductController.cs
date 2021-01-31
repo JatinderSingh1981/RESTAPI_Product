@@ -28,38 +28,62 @@ namespace REST_API.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(ProductsResponse), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(ProductsResponse), (int)HttpStatusCode.BadRequest)]
-        public async Task<ActionResult<ProductsResponse>> Get()
+        [ProducesResponseType(typeof(ProductListResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ProductListResponse), (int)HttpStatusCode.NotFound)]
+        public async Task<ActionResult<ProductListResponse>> Get()
         {
             //Create logs here
             var result = await _productBL.GetProducts();
             if (result.IsSuccess)
                 return Ok(result);
             else
-                return BadRequest(result);
+                return NotFound(result);
         }
 
         [HttpGet("GetProductById/{id}")]
-        [ProducesResponseType(typeof(ProductResponse), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(ProductResponse), (int)HttpStatusCode.BadRequest)]
-        public virtual async Task<ActionResult<ProductResponse>> GetProductById(int id)
+        [ProducesResponseType(typeof(EnumResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(EnumResponse), (int)HttpStatusCode.NotFound)]
+        public virtual async Task<ActionResult<EnumResponse>> GetProductById(int id)
         {
             //Create logs here
             var result = await _productBL.GetProductById<ProductMaster>(id);
             if (result.IsSuccess)
                 return Ok(result);
             else
-                return BadRequest(result);
+                return NotFound(result);
         }
 
-        [HttpPost]
-        [ProducesResponseType(typeof(ProductResponse), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(ProductResponse), (int)HttpStatusCode.BadRequest)]
-        public virtual async Task<ActionResult<ProductResponse>> Post(ProductMaster model)
+        //Removed the post method because it is not tested yet
+        //[HttpPost]
+        //[ProducesResponseType(typeof(EnumResponse), (int)HttpStatusCode.OK)]
+        //[ProducesResponseType(typeof(EnumResponse), (int)HttpStatusCode.BadRequest)]
+        //public virtual async Task<ActionResult<EnumResponse>> Post(ProductMaster model)
+        //{
+        //    if (model == null)
+        //    {
+        //        return BadRequest("Check the values being passed!!!");
+        //    }
+        //    //Create logs here
+        //    var result = await _productBL.AddProduct(model);
+        //    if (result.IsSuccess)
+        //        return Ok(result);
+        //    else
+        //    {
+        //        return BadRequest(result);
+        //    }
+        //}
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(typeof(EnumResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(EnumResponse), (int)HttpStatusCode.BadRequest)]
+        public virtual async Task<ActionResult<EnumResponse>> Put(int id, [FromBody] ProductMaster model)
         {
+            if (model == null || id == 0 || model.ProductMasterId != id)
+            {
+                return BadRequest("Check the values being passed!!!");
+            }
             //Create logs here
-            var result = await _productBL.AddProduct(model);
+            var result = await _productBL.UpdateProduct(model);
             if (result.IsSuccess)
                 return Ok(result);
             else

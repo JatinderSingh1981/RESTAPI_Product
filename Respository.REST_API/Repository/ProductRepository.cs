@@ -11,6 +11,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Repository.REST_API
 {
@@ -30,7 +31,8 @@ namespace Repository.REST_API
         {
             _logger.LogDebug("[GetProducts] -> Getting products list from DB");
             //var productDetails = _context.ProductDetail.ToListAsync();
-            return await _context.ProductMaster.Include(x => x.ProductDetails).ToListAsync();
+            //.Include(x => x.ProductDetails)
+            return await _context.ProductMaster.ToListAsync();
         }
         public async Task<T> GetProduct<T>(Expression<Func<T, bool>> predicate, bool includeDetails = true) where T : class
         {
@@ -45,6 +47,28 @@ namespace Repository.REST_API
             await _context.Set<T>().AddAsync(product);
             var id = await _context.SaveChangesAsync();
             return await _context.Set<T>().FindAsync(id);
+
+        }
+
+        public async Task<ProductMaster> UpdateProduct(ProductMaster product)
+        {
+            if (product != null && product.ProductMasterId > 0)
+            {
+                //_context.Entry(product).State = EntityState.Modified;
+
+                _context.Attach(product);
+
+                IEnumerable<EntityEntry> unchangedEntities = _context.ChangeTracker.Entries().Where(x => x.State == EntityState.Unchanged);
+
+                foreach (EntityEntry ee in unchangedEntities)
+                {
+                    ee.State = EntityState.Modified;
+                }
+
+                await _context.SaveChangesAsync();
+                return product;
+            }
+            return null;
 
         }
     }

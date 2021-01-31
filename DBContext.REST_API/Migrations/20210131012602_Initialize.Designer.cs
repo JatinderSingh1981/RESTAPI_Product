@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DBContext.REST_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210129112930_Initialize-Context")]
-    partial class InitializeContext
+    [Migration("20210131012602_Initialize")]
+    partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -205,7 +205,7 @@ namespace DBContext.REST_API.Migrations
                         new
                         {
                             Id = 3,
-                            Name = "Text"
+                            Name = "String"
                         },
                         new
                         {
@@ -252,18 +252,17 @@ namespace DBContext.REST_API.Migrations
                         new
                         {
                             Id = 1,
-                            LookUpSourceId = 2,
                             ProductMasterId = 1,
                             PropertyName = "FormFactor",
-                            PropertyTypeId = 4,
-                            PropertyValue = "1"
+                            PropertyTypeId = 3,
+                            PropertyValue = "MidTower"
                         },
                         new
                         {
                             Id = 2,
                             ProductMasterId = 2,
                             PropertyName = "Size",
-                            PropertyTypeId = 1,
+                            PropertyTypeId = 3,
                             PropertyValue = "15"
                         });
                 });

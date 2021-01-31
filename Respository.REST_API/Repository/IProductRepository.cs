@@ -11,5 +11,6 @@ namespace Repository.REST_API
         Task<IEnumerable<ProductMaster>> GetProductList();
         Task<T> GetProduct<T>(Expression<Func<T, bool>> predicate, bool includeDetails = true) where T : class;
         Task<T> AddProduct<T>(T product) where T : class;
+        Task<ProductMaster> UpdateProduct(ProductMaster product);
     }
 }

@@ -16,6 +16,29 @@ namespace REST_API.Mapper
             return string.Empty;
 
         }
+
+        public static string MapLookUpEnum(Entity.ProductDetail productDetail)
+        {
+            //if (enumValue.HasValue && enumValue.Value > 0)
+            //    return Enumeration.FromValue<T>(enumValue.Value).Name;
+            //Type type = Type.GetType(assemblyQualifiedName);
+            //object instance = Activator.CreateInstance(type);
+            switch (productDetail.LookUpSourceId)
+            {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                default:
+                    break;
+            }
+            return string.Empty;
+
+        }
         public ProductMapper()
         {
 
@@ -27,6 +50,7 @@ namespace REST_API.Mapper
             //.ForMember(d => d.ProductDetails, opt => opt.MapFrom(src => src.ProductDetails));
 
             CreateMap<Entity.ProductDetail, ProductDetail>()
+                //.ForMember(m => m.LookupPropertyValue, e => e.MapFrom(o => MapLookUpEnum(o)))
                 .ForMember(m => m.PropertyType, e => e.MapFrom(o => MapEnum<PropertyType>(o.PropertyTypeId)))
                 .ForMember(m => m.LookUpSource, e => e.MapFrom(o => MapEnum<LookupSource>(o.LookUpSourceId)));
             //.ForMember(m => m.ComputerType, e => e.MapFrom(et => Enumeration.FromValue<ProductType>(et.Product.ComputerTypeId).Name))
@@ -35,8 +59,14 @@ namespace REST_API.Mapper
             #endregion
 
             #region Map from Model to Entity
-            CreateMap<ProductMaster, Entity.ProductMaster>();
-            CreateMap<ProductDetail, Entity.ProductDetail>();
+            CreateMap<ProductMaster, Entity.ProductMaster>()
+                .ForMember(x => x.ComputerType, opt => opt.Ignore())
+                .ForMember(x => x.Processor, opt => opt.Ignore())
+                .ForMember(x => x.Brand, opt => opt.Ignore());
+
+            CreateMap<ProductDetail, Entity.ProductDetail>()
+                .ForMember(x => x.PropertyType, opt => opt.Ignore())
+                .ForMember(x => x.LookUpSource, opt => opt.Ignore());
 
 
             #endregion

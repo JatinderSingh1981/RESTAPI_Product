@@ -39,9 +39,9 @@ namespace DBContext.REST_API
                     Id = 1,
                     ProductMasterId =1,
                     PropertyName ="FormFactor",
-                    PropertyValue=FormFactor.MidTower.Id.ToString(),
-                    PropertyTypeId = PropertyType.Dropdown.Id,
-                    LookUpSourceId = LookupSource.FormFactor.Id
+                    PropertyValue=FormFactor.MidTower.Name.ToString(),
+                    PropertyTypeId = PropertyType.String.Id
+                    //LookUpSourceId = LookupSource.FormFactor.Id
                 },
            new ProductDetail
                 {
@@ -49,7 +49,7 @@ namespace DBContext.REST_API
                     ProductMasterId =2,
                     PropertyName ="Size",
                     PropertyValue= "15",
-                    PropertyTypeId = PropertyType.Int.Id
+                    PropertyTypeId = PropertyType.String.Id
 
                 }
 

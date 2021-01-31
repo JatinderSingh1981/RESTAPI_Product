@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DBContext.REST_API.Migrations
 {
-    public partial class InitializeContext : Migration
+    public partial class Initialize : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -232,7 +232,7 @@ namespace DBContext.REST_API.Migrations
             migrationBuilder.InsertData(
                 table: "PropertyType",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { 3, "Text" });
+                values: new object[] { 3, "String" });
 
             migrationBuilder.InsertData(
                 table: "PropertyType",
@@ -242,12 +242,12 @@ namespace DBContext.REST_API.Migrations
             migrationBuilder.InsertData(
                 table: "ProductDetails",
                 columns: new[] { "Id", "LookUpSourceId", "ProductMasterId", "PropertyName", "PropertyTypeId", "PropertyValue" },
-                values: new object[] { 1, 2, 1, "FormFactor", 4, "1" });
+                values: new object[] { 1, null, 1, "FormFactor", 3, "MidTower" });
 
             migrationBuilder.InsertData(
                 table: "ProductDetails",
                 columns: new[] { "Id", "LookUpSourceId", "ProductMasterId", "PropertyName", "PropertyTypeId", "PropertyValue" },
-                values: new object[] { 2, null, 2, "Size", 1, "15" });
+                values: new object[] { 2, null, 2, "Size", 3, "15" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductDetails_ProductMasterId",

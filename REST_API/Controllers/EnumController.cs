@@ -6,6 +6,7 @@ using ViewModels.REST_API;
 using Common.REST_API;
 using System.Collections.Generic;
 using System;
+using System.Net;
 
 namespace REST_API.Controllers
 {
@@ -29,37 +30,49 @@ namespace REST_API.Controllers
         }
 
         [HttpGet("formfactor")]
-        public IEnumerable<FormFactor> GetFormFactorList()
+        [ProducesResponseType(typeof(EnumResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(EnumResponse), (int)HttpStatusCode.BadRequest)]
+        public EnumResponse GetFormFactorList()
         {
             return _enumBL.GetList<FormFactor>();
         }
 
         [HttpGet("processortype")]
-        public IEnumerable<ProcessorType> GetProcessorTypeList()
+        [ProducesResponseType(typeof(EnumResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(EnumResponse), (int)HttpStatusCode.BadRequest)]
+        public EnumResponse GetProcessorTypeList()
         {
             return _enumBL.GetList<ProcessorType>();
         }
 
         [HttpGet("producttype")]
-        public IEnumerable<ProductType> GetProductTypeList()
+        [ProducesResponseType(typeof(EnumResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(EnumResponse), (int)HttpStatusCode.BadRequest)]
+        public EnumResponse GetProductTypeList()
         {
             return _enumBL.GetList<ProductType>();
         }
 
         [HttpGet("propertytype")]
-        public IEnumerable<PropertyType> GetPropertyTypeList()
+        [ProducesResponseType(typeof(EnumResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(EnumResponse), (int)HttpStatusCode.BadRequest)]
+        public EnumResponse GetPropertyTypeList()
         {
             return _enumBL.GetList<PropertyType>();
         }
 
         [HttpGet("brand")]
-        public IEnumerable<Brand> GetBrandList()
+        [ProducesResponseType(typeof(EnumResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(EnumResponse), (int)HttpStatusCode.BadRequest)]
+        public EnumResponse GetBrandList()
         {
             return _enumBL.GetList<Brand>();
         }
 
         [HttpGet("lookupsource")]
-        public IEnumerable<LookupSource> GetLookUpSourceList()
+        [ProducesResponseType(typeof(EnumResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(EnumResponse), (int)HttpStatusCode.BadRequest)]
+        public EnumResponse GetLookUpSourceList()
         {
             return _enumBL.GetList<LookupSource>();
         }

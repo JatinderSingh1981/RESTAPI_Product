@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace ViewModels.REST_API
 {
-    public class ProductsResponse
+    public class ProductListResponse
     {
-        public IEnumerable<ProductMaster> Products { get; set; }
+        public IEnumerable<ProductMaster> ProductList { get; set; }
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
     }

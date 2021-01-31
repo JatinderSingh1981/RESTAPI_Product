@@ -52,8 +52,9 @@ namespace REST_API
             services.AddAutoMapper(typeof(ProductMapper).Assembly);
 
             #region DI
-            services.AddTransient<ProductsResponse>();
+            services.AddTransient<ProductListResponse>();
             services.AddTransient<ProductResponse>();
+            services.AddTransient<EnumResponse>();
 
             services.AddTransient<IEnumBusiness, EnumBusiness>();
 

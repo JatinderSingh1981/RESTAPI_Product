@@ -2,7 +2,13 @@
 {
     public class Brand : Enumeration
     {
-
+        //enum Level
+        //{
+        //    HP,
+        //    Dell,
+        //    Lenovo,
+        //    Microsoft
+        //}
         public static readonly Brand HP = new Brand(1, "HP");
         public static readonly Brand Dell = new Brand(2, "Dell");
         public static readonly Brand Lenovo = new Brand(3, "Lenovo");

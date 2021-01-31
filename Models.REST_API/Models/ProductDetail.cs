@@ -9,7 +9,9 @@ namespace Models.REST_API
         public string PropertyName { get; set; }
        
         public string PropertyValue { get; set; }
-       
+
+        public string LookupPropertyValue { get; set; }
+
         public int PropertyTypeId { get; set; }
         public string PropertyType { get; set; }
         public int? LookUpSourceId { get; set; }
